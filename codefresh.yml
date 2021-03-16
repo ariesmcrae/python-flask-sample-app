@@ -3,6 +3,7 @@ stages:
   - checkout
   - package
   - test
+  - upload
 steps:
   main_clone:
     title: Cloning main repository...
@@ -14,7 +15,7 @@ steps:
     title: Building Docker Image
     type: build
     stage: package
-    image_name: ariesmcrae/my-app-image
+    image_name: my-app-image
     working_directory: ./
     tag: v1.0.1
     dockerfile: Dockerfile
@@ -26,3 +27,11 @@ steps:
     commands:
       - pip install pytest
       - pytest
+  MyPushStep:
+    title: Pushing to Docker Registry
+    type: push
+    stage: upload
+    tag: '${{CF_BRANCH}}'
+    candidate: '${{MyAppDockerImage}}'
+    image_name: ariesmcrae/python-flask-sample-app
+    registry: github-container-registry
