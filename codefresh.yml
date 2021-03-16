@@ -14,9 +14,9 @@ steps:
     title: Building Docker Image
     type: build
     stage: package
-    image_name: myappimage
+    image_name: ariesmcrae/my-app-image
     working_directory: ./
-    tag: 'master'
+    tag: v1.0.0
     dockerfile: Dockerfile
     disable_push: false
 #  MyUnitTests:
