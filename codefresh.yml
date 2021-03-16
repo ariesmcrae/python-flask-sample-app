@@ -16,7 +16,7 @@ steps:
     stage: package
     image_name: myappimage
     working_directory: ./
-    tag: v1.0.0
+    tag: 'master'
     dockerfile: Dockerfile
     disable_push: false
 #  MyUnitTests:
